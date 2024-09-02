@@ -1,5 +1,6 @@
 package br.com.endsystem.screenmatch.principal;
 
+import br.com.endsystem.screenmatch.model.DadosEpisodio;
 import br.com.endsystem.screenmatch.model.DadosSerie;
 import br.com.endsystem.screenmatch.model.DadosTemporada;
 import br.com.endsystem.screenmatch.service.ConsumoApi;
@@ -15,7 +16,6 @@ public class Principal {
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=aa01283d";
     private final ConverteDados converteDados = new ConverteDados();
-
 
     public void exibeMenu() {
         System.out.println("Digite o nome da série para busca");
@@ -41,5 +41,14 @@ public class Principal {
             temporadas.add(temporada);
         }
         temporadas.forEach(System.out::println);
+//
+//        for (int i = 0; i < dadosSerie.totalTemporada(); i++) {
+//            List<DadosEpisodio> episodiosTemporadas = temporadas.get(i).episodios();
+//            for (int j = 0; j < episodiosTemporadas.size(); j++) {
+//                System.out.println(episodiosTemporadas.get(j).titulo());
+//            }
+//        }
+        // Lambeda em Java
+        temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
     }
 }
